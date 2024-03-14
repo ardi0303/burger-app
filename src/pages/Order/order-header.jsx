@@ -25,7 +25,7 @@ export default function OrderHeader({
 
   return (
     <section className="container mx-auto py-14">
-      <div className="flex justify-between items-center">
+      <div className="flex justify-between items-center lg:mx-48">
         <div className="flex gap-6 items-center">
           <Link to={backButton?.link}>
             <Button variant={backButton?.variant}>{backButton?.label}</Button>

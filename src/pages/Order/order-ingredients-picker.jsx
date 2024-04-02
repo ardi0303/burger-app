@@ -1,10 +1,16 @@
+import { useDispatch, useSelector } from "react-redux";
 import { formatNumber } from "../../utils/helper";
+import { addIngredient } from "../../store/slice/ingredients";
 
 export default function OrderIngredientsPicker({
-  allIngredients = [],
-  manageIngredients,
   isReachMax
 }) {
+
+  const allIngredients = useSelector((state) => state?.ingredients.ingredients);
+  const selectedIngredients = useSelector((state) => state?.ingredients.selectedIngredients);
+  const dispatch = useDispatch();
+  const manageIngredients=(id) => dispatch(addIngredient(id))
+  console.log(selectedIngredients);
 
   const disableStyle = isReachMax ? "opacity-50 cursor-not-allowed" : "";
   return (

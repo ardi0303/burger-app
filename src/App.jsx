@@ -3,6 +3,7 @@ import "./App.css";
 import Home from './pages/Home';
 import About from './pages/About';
 import Order from './pages/Order';
+import Post from './pages/Post';
 
 const routers = createBrowserRouter([
   {
@@ -16,6 +17,10 @@ const routers = createBrowserRouter([
   {
     path: "/order",
     element: <Order />
+  },
+  {
+    path: "/post",
+    element: <Post />
   }
 ]);
 

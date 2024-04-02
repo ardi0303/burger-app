@@ -1,12 +1,14 @@
+import { useDispatch, useSelector } from "react-redux";
 import Button from "../../components/Button";
 import { formatNumber } from "../../utils/helper";
 import { Link } from "react-router-dom";
 
-export default function OrderHeader({
-  allIngredients = [],
-  selectedIngredients = [],
-  onReset,
-}) {
+export default function OrderHeader() {
+
+  const allIngredients = useSelector((state) => state?.ingredients.ingredients);
+  const selectedIngredients = useSelector((state) => state?.ingredients.selectedIngredients);
+  const dispatch = useDispatch();
+  const onReset = () => dispatch(resetIngredients());
   const isEmptySelectedIngredients = selectedIngredients.length === 0;
 
   const totalCost = () => {

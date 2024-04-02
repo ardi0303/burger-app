@@ -4,19 +4,24 @@ import {
   BreadTop,
   Ingredient
 } from "./ingredients";
+import { useDispatch, useSelector } from "react-redux";
+import { removeIngredient } from "../../store/slice/ingredients";
 
 export default function OrderBurgerDisplay({
-  selectedIngredients = [],
-  removeIngredient,
   ingredientCounts,
-  allIngredients
 }) {
+
+  const allIngredients = useSelector((state) => state?.ingredients.ingredients);
+  const selectedIngredients = useSelector((state) => state?.ingredients.selectedIngredients);
+  const dispatch = useDispatch();
+  const manageIngredient = (idx) => dispatch(removeIngredient(idx));
+  console.log(selectedIngredients);
   return (
     <section className="container mx-auto flex justify-center mb-14 gap-4">
       <div className="flex flex-col gap-1 items-center">
         <BreadTop />
-        {selectedIngredients.reverse().map((id, idx) => (
-          <Ingredient key={idx} type={id} onClickX={() => removeIngredient(idx)} />
+        {[...selectedIngredients].reverse().map((id, idx) => (
+          <Ingredient key={idx} type={id} onClickX={() => manageIngredient(selectedIngredients.length - 1 - idx)} />
         ))}
         <BreadBottom />
       </div>
